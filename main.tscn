@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://diieuopebu6kp"]
+[gd_scene load_steps=5 format=3 uid="uid://diieuopebu6kp"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_wh6mw"]
 [ext_resource type="Script" path="res://Hand.gd" id="2_26ge6"]
 [ext_resource type="PackedScene" uid="uid://dfthp4fyre3ux" path="res://card.tscn" id="2_pmcxp"]
+[ext_resource type="Script" path="res://Combine.gd" id="4_mjewf"]
 
 [node name="Main" type="Node2D"]
 
@@ -40,6 +41,22 @@ layout_mode = 2
 [node name="Card4" parent="CanvasLayer/Hand" instance=ExtResource("2_pmcxp")]
 layout_mode = 2
 
+[node name="Combine" type="Button" parent="CanvasLayer"]
+offset_left = 196.0
+offset_top = 132.0
+offset_right = 248.0
+offset_bottom = 141.0
+script = ExtResource("4_mjewf")
+
+[node name="Label" type="Label" parent="CanvasLayer/Combine"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -1.0
+offset_right = 42.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 7
+text = "Combine"
+
 [connection signal="add_card_to_list" from="CanvasLayer/Hand/Card" to="CanvasLayer/Hand" method="_on_card_add_card_to_list"]
 [connection signal="remove_card_from_list" from="CanvasLayer/Hand/Card" to="CanvasLayer/Hand" method="_on_card_remove_card_from_list"]
 [connection signal="add_card_to_list" from="CanvasLayer/Hand/Card2" to="CanvasLayer/Hand" method="_on_card_add_card_to_list"]
@@ -48,3 +65,4 @@ layout_mode = 2
 [connection signal="remove_card_from_list" from="CanvasLayer/Hand/Card3" to="CanvasLayer/Hand" method="_on_card_remove_card_from_list"]
 [connection signal="add_card_to_list" from="CanvasLayer/Hand/Card4" to="CanvasLayer/Hand" method="_on_card_add_card_to_list"]
 [connection signal="remove_card_from_list" from="CanvasLayer/Hand/Card4" to="CanvasLayer/Hand" method="_on_card_remove_card_from_list"]
+[connection signal="pressed" from="CanvasLayer/Combine" to="CanvasLayer/Hand" method="_on_combine_pressed"]

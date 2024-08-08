@@ -1,6 +1,6 @@
 extends HBoxContainer
-
 @onready var card_list: Array = []
+const card_scene = preload("res://card.tscn")
 #@onready var number : int = 0
 #static var my_variable := true
 # Called when the node enters the scene tree for the first time.
@@ -30,7 +30,6 @@ func get_num(card):
 func is_added(card):
 	return card in card_list
 
-
 func _on_card_remove_card_from_list(card):
 	card_list.erase(card)
 	print("Card removed")
@@ -41,3 +40,13 @@ func check_index():
 		if get_num(child) != child.index:
 			child.index = get_num(child)
 			child.set_number(child.index)
+			
+func combine_cards():
+	for card in card_list:
+		card.queue_free()
+	card_list.clear()
+	var new_card = card_scene.instantiate()
+	add_child(new_card)
+	
+func _on_combine_pressed():
+	combine_cards()
