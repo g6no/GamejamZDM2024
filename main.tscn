@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://diieuopebu6kp"]
+
+[ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_wh6mw"]
+[ext_resource type="Script" path="res://Hand.gd" id="2_26ge6"]
+[ext_resource type="PackedScene" uid="uid://dfthp4fyre3ux" path="res://card.tscn" id="2_pmcxp"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.278431, 0.278431, 0.278431, 1)
+position = Vector2(128, 72)
+texture = ExtResource("1_wh6mw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hand" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -30.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 1
+script = ExtResource("2_26ge6")
+
+[node name="Card" parent="CanvasLayer/Hand" instance=ExtResource("2_pmcxp")]
+layout_mode = 2
+
+[node name="Card2" parent="CanvasLayer/Hand" instance=ExtResource("2_pmcxp")]
+layout_mode = 2
+
+[node name="Card3" parent="CanvasLayer/Hand" instance=ExtResource("2_pmcxp")]
+layout_mode = 2
+
+[node name="Card4" parent="CanvasLayer/Hand" instance=ExtResource("2_pmcxp")]
+layout_mode = 2
+
+[connection signal="add_card_to_list" from="CanvasLayer/Hand/Card" to="CanvasLayer/Hand" method="_on_card_add_card_to_list"]
+[connection signal="remove_card_from_list" from="CanvasLayer/Hand/Card" to="CanvasLayer/Hand" method="_on_card_remove_card_from_list"]
+[connection signal="add_card_to_list" from="CanvasLayer/Hand/Card2" to="CanvasLayer/Hand" method="_on_card_add_card_to_list"]
+[connection signal="remove_card_from_list" from="CanvasLayer/Hand/Card2" to="CanvasLayer/Hand" method="_on_card_remove_card_from_list"]
+[connection signal="add_card_to_list" from="CanvasLayer/Hand/Card3" to="CanvasLayer/Hand" method="_on_card_add_card_to_list"]
+[connection signal="remove_card_from_list" from="CanvasLayer/Hand/Card3" to="CanvasLayer/Hand" method="_on_card_remove_card_from_list"]
+[connection signal="add_card_to_list" from="CanvasLayer/Hand/Card4" to="CanvasLayer/Hand" method="_on_card_add_card_to_list"]
+[connection signal="remove_card_from_list" from="CanvasLayer/Hand/Card4" to="CanvasLayer/Hand" method="_on_card_remove_card_from_list"]
