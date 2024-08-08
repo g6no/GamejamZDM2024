@@ -10,6 +10,7 @@ func _ready():
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
+	#print(get_children())
 	#for child in get_children():
 		#if child in card_list:
 			#var index = card_list.find(child,0)
@@ -46,7 +47,11 @@ func combine_cards():
 		card.queue_free()
 	card_list.clear()
 	var new_card = card_scene.instantiate()
-	add_child(new_card)
+	new_card.add_card_to_list.connect(_on_card_add_card_to_list)
+	new_card.remove_card_from_list.connect(_on_card_remove_card_from_list)
+	self.add_child(new_card)
 	
 func _on_combine_pressed():
 	combine_cards()
+
+

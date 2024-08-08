@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfthp4fyre3ux"]
+[gd_scene load_steps=3 format=3 uid="uid://dfthp4fyre3ux"]
 
 [ext_resource type="Script" path="res://card.gd" id="1_yfpp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jctv7"]
+size = Vector2(25, 30)
 
 [node name="Card" type="Control"]
 custom_minimum_size = Vector2(25, 30)
@@ -48,6 +51,14 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 11
 
+[node name="CardArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardArea"]
+position = Vector2(12.5, 15)
+shape = SubResource("RectangleShape2D_jctv7")
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="CardArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CardArea" to="." method="_on_card_area_area_exited"]
