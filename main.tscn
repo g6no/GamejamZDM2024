@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://diieuopebu6kp"]
+[gd_scene load_steps=8 format=3 uid="uid://diieuopebu6kp"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_r8ju2"]
 [ext_resource type="Script" path="res://Hand.gd" id="2_26ge6"]
 [ext_resource type="Texture2D" uid="uid://o4r2djm016jt" path="res://art/BackgroundArt.jpeg" id="2_buyrd"]
 [ext_resource type="Script" path="res://Combine.gd" id="4_mjewf"]
+[ext_resource type="Texture2D" uid="uid://toc24q888nqv" path="res://MELAS.PNG" id="5_6rkc5"]
+[ext_resource type="Texture2D" uid="uid://ctv4ojd3ku3q0" path="res://MAMA.PNG" id="6_mf2fi"]
 [ext_resource type="PackedScene" uid="uid://bti3x4vbxak43" path="res://card_drop_area.tscn" id="6_x2poq"]
 
 [node name="Main" type="Node2D"]
@@ -11,9 +13,8 @@ script = ExtResource("1_r8ju2")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.278431, 0.278431, 0.278431, 1)
-position = Vector2(128, 72)
+position = Vector2(800, 345.5)
 texture = ExtResource("2_buyrd")
-metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -23,89 +24,162 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -113.0
-offset_top = -30.0
-offset_right = 57.0
+offset_left = -331.0
+offset_top = -144.0
+offset_right = 331.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+theme_override_constants/separation = 10
 alignment = 1
 script = ExtResource("2_26ge6")
 
 [node name="Combine" type="Button" parent="CanvasLayer"]
-offset_left = 196.0
-offset_top = 132.0
-offset_right = 248.0
-offset_bottom = 141.0
+offset_left = 1286.0
+offset_top = 1.0
+offset_right = 1599.0
+offset_bottom = 346.0
 script = ExtResource("4_mjewf")
 
-[node name="Label" type="Label" parent="CanvasLayer/Combine"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = -1.0
-offset_right = 42.0
-offset_bottom = 10.0
-theme_override_font_sizes/font_size = 7
-text = "Combine"
-
-[node name="Play Turn" type="Button" parent="CanvasLayer"]
-offset_left = 201.0
-offset_top = 110.0
-offset_right = 241.0
-offset_bottom = 129.0
-theme_override_font_sizes/font_size = 7
-text = "Play Turn"
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Combine"]
 visible = false
-modulate = Color(1, 0.552941, 0.984314, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+modulate = Color(1, 1, 1, 0.372549)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 40.0
+offset_right = 94.0
+offset_bottom = 104.0
+scale = Vector2(4, 4)
+texture = ExtResource("5_6rkc5")
+
+[node name="Label" type="Label" parent="CanvasLayer/Combine"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -24.5
+offset_right = 75.0
+offset_bottom = 24.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 35
+text = "Combine"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 101.0
-offset_top = 28.0
-offset_right = 153.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 8
-text = "Start Game"
+[node name="Play Turn" type="Button" parent="CanvasLayer"]
+offset_left = 1286.0
+offset_top = 346.0
+offset_right = 1600.0
+offset_bottom = 690.0
+theme_override_font_sizes/font_size = 35
+text = "Play Turn"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 102.0
-offset_top = 59.0
-offset_right = 154.0
-offset_bottom = 79.0
-theme_override_font_sizes/font_size = 8
-text = "Start Game"
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_top = -1.0
+offset_right = 257.0
+offset_bottom = 692.0
+color = Color(0.14902, 0.14902, 0.14902, 0.596078)
 
-[node name="Button3" type="Button" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 101.0
-offset_top = 100.0
-offset_right = 153.0
-offset_bottom = 120.0
-theme_override_font_sizes/font_size = 8
-text = "Start Game"
+[node name="PointsText" type="Label" parent="CanvasLayer"]
+offset_left = 34.0
+offset_top = 268.0
+offset_right = 224.0
+offset_bottom = 304.0
+theme_override_font_sizes/font_size = 26
+text = "Flavor Points:"
+horizontal_alignment = 1
+
+[node name="PointsValue" type="Label" parent="CanvasLayer"]
+offset_left = 27.0
+offset_top = 313.0
+offset_right = 217.0
+offset_bottom = 349.0
+theme_override_font_sizes/font_size = 26
+text = "0"
+horizontal_alignment = 1
+
+[node name="ScoreText" type="Label" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 345.0
+offset_right = 260.0
+offset_bottom = 381.0
+theme_override_font_sizes/font_size = 26
+text = "Points to Win:"
+horizontal_alignment = 1
+
+[node name="ScoreValue" type="Label" parent="CanvasLayer"]
+offset_left = 27.0
+offset_top = 389.0
+offset_right = 217.0
+offset_bottom = 425.0
+theme_override_font_sizes/font_size = 26
+text = "60"
+horizontal_alignment = 1
+
+[node name="TurnText" type="Label" parent="CanvasLayer"]
+offset_left = 27.0
+offset_top = 547.0
+offset_right = 217.0
+offset_bottom = 583.0
+theme_override_font_sizes/font_size = 26
+text = "Turn"
+horizontal_alignment = 1
+
+[node name="TurnValue" type="Label" parent="CanvasLayer"]
+offset_left = 27.0
+offset_top = 591.0
+offset_right = 217.0
+offset_bottom = 627.0
+theme_override_font_sizes/font_size = 26
+text = "1/3"
+horizontal_alignment = 1
+
+[node name="LevelText" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 27.0
+offset_top = 75.0
+offset_right = 217.0
+offset_bottom = 111.0
+theme_override_font_sizes/font_size = 26
+text = "Level: 1"
+horizontal_alignment = 1
+
+[node name="LevelValue" type="Label" parent="CanvasLayer"]
+offset_left = 27.0
+offset_top = 162.0
+offset_right = 217.0
+offset_bottom = 198.0
+theme_override_font_sizes/font_size = 26
+text = "Level: 1"
+horizontal_alignment = 1
+
+[node name="LevelImage" type="TextureRect" parent="CanvasLayer"]
+offset_left = 64.0
+offset_top = 51.0
+offset_right = 128.0
+offset_bottom = 115.0
+scale = Vector2(2, 2)
+texture = ExtResource("6_mf2fi")
 
 [node name="CardDropArea" parent="." instance=ExtResource("6_x2poq")]
-position = Vector2(38, 47)
+position = Vector2(333, 203)
 
 [node name="CardDropArea2" parent="." instance=ExtResource("6_x2poq")]
-position = Vector2(114, 47)
+position = Vector2(715, 208)
 
 [node name="CardDropArea3" parent="." instance=ExtResource("6_x2poq")]
-position = Vector2(189, 48)
+position = Vector2(1085, 208)
 
 [node name="Spawn" type="Button" parent="."]
-offset_left = 102.0
-offset_top = 14.0
-offset_right = 151.0
-offset_bottom = 33.0
+visible = false
+offset_left = 774.0
+offset_top = 287.5
+offset_right = 823.0
+offset_bottom = 306.5
 theme_override_font_sizes/font_size = 7
 text = "Spawn Card"
 

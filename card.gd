@@ -8,6 +8,9 @@ extends Control
 @onready var cur_state = State.BASE
 @onready var card_image : TextureRect = $CardImage
 @onready var description_cont : CenterContainer = $DescriptionContainter
+@onready var border = $ColorBorder
+@onready var card_template = $CardTemplate
+@onready var descLabel = $DescriptionContainter/Description/DescLabel
 #@onready var targets: Array[Node] = []
 enum types {BOOSTER, INGREDIENT, DISH} 
 @export var card : String
@@ -74,10 +77,18 @@ enum State {BASE, CLICKED, DRAGGING, RELEASED}
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	parent = get_parent()
-	var image_text = load(self.image_path)
+	var image_text = load(image_path)
 	card_image.texture = image_text
-#
-#
+	
+	$Text.text = card
+	descLabel.text = description
+	
+	if card_type == types.BOOSTER:
+		card_template.modulate = Color("#FF5733")
+	elif card_type == types.INGREDIENT:
+		card_template.modulate = Color("#56d333")
+		#card_template.modulate = Color(76, 175, 80)
+		
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	#print(self.name + " "+ str(can_change))
@@ -105,6 +116,7 @@ func _on_gui_input(event):
 			dragging = true
 			original_position = position
 			if get_parent() == parent:
+				border.visible = true
 				print(position)
 				cur_state = State.CLICKED
 				add_card_to_list.emit(self)
@@ -116,6 +128,7 @@ func _on_gui_input(event):
 				set_number(index)
 			
 		elif confirm and hovered and parent.is_added(self) and get_parent() == parent:
+			border.visible = false
 			cur_state = State.BASE
 			print("Shitty Code")
 			remove_card_from_list.emit(self)
@@ -125,6 +138,7 @@ func _on_gui_input(event):
 			cur_state = State.BASE
 			dragging = false
 			if card_area and card_area.get_child_count() == 0:
+				print("Unoccupied")
 				self.reparent(card_area)
 				position = Vector2.ZERO
 				remove_card_from_list.emit(self)
@@ -147,8 +161,9 @@ func _on_gui_input(event):
 		position += event.relative
 
 func set_number(num):
+	
 	if num is int:
-		num_text.text = str(num)
+		num_text.text = str(num+1)
 	else:
 		num_text.text = ""
 
@@ -173,4 +188,12 @@ func set_card_attributes(card_: String, card_type_: types, image_path_: String, 
 	base_points = base_points_
 	effect = effect_
 	possible_combinations = possible_combinations_
+	description = description_
+
+func set_dish_attributes(card_: String, card_type_: types, image_path_: String, base_points_: int, effect_: String, description_ : String):
+	card = card_
+	card_type = card_type_
+	image_path = image_path_
+	base_points = base_points_
+	effect = effect_
 	description = description_
