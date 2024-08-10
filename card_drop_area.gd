@@ -1,7 +1,7 @@
 class_name CardDropArea
-
-
 extends Area2D
+
+var occupied : bool = false
 
 
 # Called when the node enters the scene tree for the first time.
