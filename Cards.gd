@@ -20,3 +20,5 @@ func _init(card: String = "", card_type: types = types.INGREDIENT, image_path: S
 func _ready():
 	var image_text = load(self.image_path)
 	$CardImage.texture = image_text
+	
+	

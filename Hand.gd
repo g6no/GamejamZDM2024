@@ -3,8 +3,14 @@ extends HBoxContainer
 var card_names: Array = []
 var rng = RandomNumberGenerator.new()
 
+var first_call = true
+
 const card_scene = preload("res://card.tscn")
 enum types {BOOSTER, INGREDIENT, DISH} 
+
+@onready var card_flip = $"/root/Main/CardFlip"
+@onready var microwave = $"/root/Main/Microwave"
+
 
 
 var boosters = [
@@ -41,7 +47,8 @@ var dishes = [
 #static var my_variable := true
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	draw_cards()
+	if not first_call:
+		draw_cards()
 
 func draw_cards():
 	var cards_to_draw = 6 - self.get_child_count()
@@ -52,7 +59,9 @@ func draw_cards():
 		var ingredient = target_dict.pick_random()
 		#spawn_card(i)
 		spawn_ingred(ingredient)
+		card_flip.play()
 		await get_tree().create_timer(0.5).timeout
+		
 
 
 
@@ -134,6 +143,7 @@ func check_index():
 			
 func combine_cards():
 	if len(card_list) == 2:
+		microwave.play()
 		var new_card_index = check_combinations()
 		for card in card_list:
 			card.queue_free()
@@ -196,6 +206,7 @@ func make_dish(ingredient):
 	)
 	self.add_child(new_card)
 	print(new_card.image_path)
+
 
 func spawn_dish(i):
 	var new_card = card_scene.instantiate()

@@ -11,6 +11,7 @@ extends Control
 @onready var border = $ColorBorder
 @onready var card_template = $CardTemplate
 @onready var descLabel = $DescriptionContainter/Description/DescLabel
+@onready var sparkle = $Sparkle
 #@onready var targets: Array[Node] = []
 enum types {BOOSTER, INGREDIENT, DISH} 
 @export var card : String
@@ -22,10 +23,10 @@ enum types {BOOSTER, INGREDIENT, DISH}
 @export var description: String
 
 
+
 var parent
 var index
 var card_area
-
 #var cards = [
 	#{"card": "Salt", "card_type": types.BOOSTER,"image_path": "", "base_points": 5, "effect": ""},
 	#{"card": "Spice mix", "card_type": types.BOOSTER,"image_path": "", "base_points": 0, "effect": ""},  # No base points, effect modifies other cards
@@ -87,6 +88,7 @@ func _ready():
 		card_template.modulate = Color("#FF5733")
 	elif card_type == types.INGREDIENT:
 		card_template.modulate = Color("#56d333")
+	enhance()
 		#card_template.modulate = Color(76, 175, 80)
 		
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -197,3 +199,7 @@ func set_dish_attributes(card_: String, card_type_: types, image_path_: String, 
 	base_points = base_points_
 	effect = effect_
 	description = description_
+
+func enhance():
+	if "Super" in description: 
+		sparkle.visible = true
