@@ -84,6 +84,7 @@ func play_turn():
 				panel.visible = true
 			print("You win!")
 			point_total = 0
+			points_text.text = str(point_total)
 			cur_level += 1
 			level_value.text = "Level: " + str(cur_level)
 			var level_img = load(path_to_mama_noura)
